@@ -480,7 +480,7 @@ def main():
         print(f"{'━' * 70}")
 
         # ── Step 1: Screen with Nova Lite (ALL posts) ───────
-        print(f"\n  [Agent 1] Screening (Nova Lite)")
+        print("\n  [Agent 1] Screening (Nova Lite)")
         screening_agent = build_screening_agent()
         t1 = time.time()
         screen_result = screening_agent(f"Screen post {post_id}")
@@ -496,7 +496,7 @@ def main():
 
         # ── Step 2: Deep review with Claude (BORDERLINE only) ──
         if classification == "borderline":
-            print(f"\n  [Agent 2] Deep Review (Claude) — escalated")
+            print("\n  [Agent 2] Deep Review (Claude) — escalated")
             review_agent = build_review_agent()
             t2 = time.time()
             review_result = review_agent(f"Deep review post {post_id}")
@@ -508,12 +508,12 @@ def main():
             print(f"  Verdict: {final_verdict.upper()} ({review_time:.1f}s)")
             print(f"  Reason: {reason}")
         elif classification == "safe":
-            print(f"  >> Fast-tracked as SAFE (no Claude needed)")
+            print("  >> Fast-tracked as SAFE (no Claude needed)")
             final_verdict = "safe"
 
         # ── Step 3: Notice with Nova Pro (HARMFUL only) ─────
         if final_verdict == "harmful":
-            print(f"\n  [Agent 3] Notice (Nova Pro)")
+            print("\n  [Agent 3] Notice (Nova Pro)")
             notice_agent = build_notice_agent()
             t3 = time.time()
             notice_result = notice_agent(
